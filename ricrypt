@@ -26,8 +26,8 @@ echo ""
 echo "WARNING: This encryption does NOT support interactive input or arguments!"
 echo ""
 echo "The following are NOT supported and will fail to run properly:"
-echo "  read -r name"
-echo "  encryptedresult <$1> <$2>"
+echo "  read input"
+echo "  encryptedresult <\$1>"
 echo ""
 echo "Reason: The script is encoded and executed in a non-interactive shell."
 echo ""
@@ -57,6 +57,7 @@ length=${#command}
 echo "Generating key..."
 key=$(od -An -N1 -tx1 /dev/urandom | tr -d ' ')
 echo "Key: 0x$key"
+echo "Generating XOR data..."
 encrypted=""
 for ((i = 0; i < length; i++)); do
 	char="${command:$i:1}"
