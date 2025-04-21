@@ -6,51 +6,59 @@ Ri-Crypt is a tool for encrypting shell commands using XOR with a random secret 
 
 **Encryption does not support shells that use input readers like `read`.**
 
-## Setup
+```
+The following are NOT supported and will fail to run properly:
+  read -r name
+  hasil_encrypt <your_script.sh> <arg>
+Why? Because the script is encoded and executed non-interactively.
+```
 
-To install the required dependencies, follow these steps:
+## Setup
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/RiProG-id/Ri-Crypt
-    ```
+   ```bash
+   git clone https://github.com/RiProG-id/Ri-Crypt
+   ```
 
 2. Navigate to the Ri-Crypt directory:
 
-    ```bash
-    cd Ri-Crypt
-    ```
+   ```bash
+   cd Ri-Crypt
+   ```
 
-3. Make the setup script executable and run it:
+3. (Optional) If the script is not executable, make it executable:
 
-    ```bash
-    bash setup.sh
-    ```
+   ```bash
+   chmod +x ricrypt
+   ```
+
+4. Make sure all required dependencies are installed:
+   - `base64`, `od`, `tr`, `strip`, `rustc`, `cargo`
 
 ## Using Ri-Crypt
 
 1. Navigate to the Ri-Crypt directory:
 
-    ```bash
-    cd Ri-Crypt
-    ```
+   ```bash
+   cd Ri-Crypt
+   ```
 
-2. Make the encryption script executable:
+2. Run the encryption script with your shell file as an argument:
 
-    ```bash
-    chmod +x run.sh
-    ```
+   ```bash
+   Usage:    ./ricrypt <your_script.sh>
+   Example:  ./ricrypt /sdcard/in/example.sh
+   ```
 
-3. Execute the encryption script:
+3. After execution, the tool will generate a binary in the same directory as your input file.
 
-    ```bash
-    ./run.sh
-    ```
+## Changelog 3.0
 
-4. Follow the prompts:
-
-   The script will prompt you to enter the location of the file to be encrypted. It will generate a binary with the same name as the input file in the same directory. The resulting binary will match the system's default architecture.
+- **Encryption via `$1` Argument**: The encryption process now uses command-line arguments for better flexibility, replacing the previous interactive method.
+- **No Setup Script Needed**: All dependencies must be manually installed, simplifying the process by removing the automatic setup script.
+- **Multiple Bug Fixes**: Various small fixes and improvements to enhance the stability and performance of the tool.
+- **Code Refactoring**: Improved code structure for better maintainability.
 
 ## Support and Contact
 
