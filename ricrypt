@@ -34,6 +34,7 @@ echo ""
 echo "Usage:    ./ricrypt <your_script.sh>"
 echo "Example:  ./ricrypt /sdcard/in/example.sh"
 echo ""
+input="$1"
 if [ ! -f "$input" ]; then
 	echo "Error: File '$input' not found"
 	exit 1
